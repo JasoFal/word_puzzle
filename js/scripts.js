@@ -14,11 +14,19 @@ function randomSentenceGenerator() {
 }
 
 function puzzleGenerator() {
-  const textArray = randomSentenceGenerator().split(" ");
-  let puzzleArray = [];
+  const textArray = randomSentenceGenerator().toLowerCase().split(" ");
   for (let i = 0; i < textArray.length; i++) {
-    puzzleArray.push(textArray[i].split(""));
+    let splitWord = textArray[i].split("");
+    let alteredWord = [];
+    splitWord.forEach(char => {
+      if (char === "a" || char === "e" || char === "i" || char === "o" || char === "u") {
+        alteredWord.push("-")       
+      } else (
+        alteredWord.push(char)
+      )
+    });
+    console.log(alteredWord, "alteredWord");
   }
-  return puzzleArray;
 }
+puzzleGenerator();
 // UI Logic
