@@ -29,4 +29,6 @@ function puzzleGenerator() {
   }
 }
 puzzleGenerator();
+
 // UI Logic
+
