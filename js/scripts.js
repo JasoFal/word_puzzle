@@ -15,6 +15,7 @@ function randomSentenceGenerator() {
 
 function puzzleGenerator() {
   const textArray = randomSentenceGenerator().toLowerCase().split(" ");
+  let puzzleArray = [];
   for (let i = 0; i < textArray.length; i++) {
     let splitWord = textArray[i].split("");
     let alteredWord = [];
@@ -25,10 +26,25 @@ function puzzleGenerator() {
         alteredWord.push(char)
       )
     });
-    console.log(alteredWord, "alteredWord");
+    puzzleArray.push(alteredWord.join(""));
+    console.log("puzzleArray: ", puzzleArray);
   }
+  return puzzleArray.join(" ");
 }
-puzzleGenerator();
+console.log(puzzleGenerator());
 
 // UI Logic
+function handleFormSubmission(event) {
+  event.preventDefault();
+  const div = document.querySelector("div#puzzle-results");
+  const pElement = document.createElement("p");
+  pElement.innerText = puzzleGenerator();
+  div.append(pElement);
+  const divRemove = document.querySelector("div#puzzle-gen");
+  divRemove.remove();
+}
+
+window.addEventListener("load", function() {
+  this.document.querySelector("form#word-puzzle").addEventListener("submit", handleFormSubmission);
+});
 
